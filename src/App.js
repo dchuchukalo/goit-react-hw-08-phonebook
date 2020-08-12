@@ -1,16 +1,61 @@
-import React, { Suspense } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { lazy, Suspense, Component } from 'react';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import routes from './routes';
-import ContactsPage from './views/ContactsPage';
+import AppBar from './components/AppBar';
+import { authOperations } from './redux/auth';
+import { connect } from 'react-redux';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
-const App = () => (
-  <>
-    <Suspense fallback={<p>Loading...</p>}>
-      <Switch>
-        <Route path={routes.contacts} component={ContactsPage} />
-      </Switch>
-    </Suspense>
-  </>
+const ContactsView = lazy(() =>
+  import('./views/ContactsView' /* webpackChunkName: "ContactsView" */),
+);
+const LoginView = lazy(() =>
+  import('./views/LoginView' /* webpackChunkName: "LoginView" */),
+);
+const RegisterView = lazy(() =>
+  import('./views/RegisterView' /* webpackChunkName: "RegisterView" */),
 );
 
-export default App;
+class App extends Component {
+  componentDidMount() {
+    this.props.onGetCurrentUser();
+  }
+  render() {
+    return (
+      <>
+        <AppBar />
+        <Suspense fallback={<p>Загружаем...</p>}>
+          <Switch>
+            <Route exact path="/">
+              <Redirect to={routes.login} />
+            </Route>
+            <PrivateRoute
+              path={routes.contacts}
+              component={ContactsView}
+              redirectTo={routes.login}
+            />
+            <PublicRoute
+              path={routes.login}
+              restricted
+              redirectTo={routes.contacts}
+              component={LoginView}
+            />
+            <PublicRoute
+              path={routes.register}
+              restricted
+              redirectTo={routes.contacts}
+              component={RegisterView}
+            />
+          </Switch>
+        </Suspense>
+      </>
+    );
+  }
+}
+
+const mapDispatchToProps = {
+  onGetCurrentUser: authOperations.getCurrentUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);

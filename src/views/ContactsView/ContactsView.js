@@ -5,12 +5,12 @@ import ContactList from '../../components/ContactList';
 import Filter from '../../components/Filter';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { connect } from 'react-redux';
-import { contactsOperations, contactsSelectors } from '../../redux/contacts/';
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
-import styles from './ContactsPage.module.css';
+import styles from './ContactsView.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-class ContactsPage extends Component {
+class ContactsView extends Component {
   componentDidMount() {
     this.props.fetchContacts();
   }
@@ -49,9 +49,9 @@ const mapDispatchToProps = dispatch => ({
   fetchContacts: () => dispatch(contactsOperations.fetchContacts()),
 });
 
-ContactsPage.propTypes = {
+ContactsView.propTypes = {
   items: PropTypes.array.isRequired,
   fetchContacts: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContactsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsView);
