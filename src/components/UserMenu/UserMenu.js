@@ -2,28 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
 import defaultAvatar from './default-avatar.png';
+import styles from './UserMenu.module.css';
 
-const styles = {
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  avatar: {
-    marginRight: 4,
-  },
-  name: {
-    fontWeight: 700,
-    marginRight: 12,
-  },
-};
+import Avatar from '@material-ui/core/Avatar';
+import { styled } from '@material-ui/core/styles';
+
+import MaterialButton from '@material-ui/core/Button';
+
+const MyAvatar = styled(Avatar)({
+  width: '32px',
+  height: '32px',
+  marginRight: '10px',
+});
 
 const UserMenu = ({ avatar, name, onLogout }) => (
-  <div style={styles.container}>
-    <img src={avatar} alt="" width="32" style={styles.avatar} />
-    <span style={styles.name}>Welcome, {name}</span>
-    <button type="button" onClick={onLogout}>
+  <div className={styles.userMenu}>
+    <MyAvatar className={styles.avatar} src={avatar} alt="" width="32" />
+    <span className={styles.name}>Welcome, {name}</span>
+    <MaterialButton type="button" onClick={onLogout}>
       Logout
-    </button>
+    </MaterialButton>
   </div>
 );
 

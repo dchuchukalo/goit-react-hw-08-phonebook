@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 
+import TextField from '@material-ui/core/TextField';
+
 class Filter extends Component {
   componentWillUnmount() {
     this.props.resetFilter();
@@ -11,15 +13,15 @@ class Filter extends Component {
     const { filter, onChange } = this.props;
 
     return (
-      <label className={styles.formTitle}>
-        Find contacts by name
-        <input
-          className={styles.formInput}
-          type="text"
-          value={filter}
-          onChange={onChange}
-        />
-      </label>
+      <TextField
+        className={styles.input}
+        type="text"
+        value={filter}
+        onChange={onChange}
+        label="Find contacts by name"
+        size="small"
+        variant="outlined"
+      />
     );
   }
 }

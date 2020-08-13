@@ -1,0 +1,22 @@
+.header {
+  margin: 0 auto 30px auto;
+  width: fit-content;
+  text-shadow: 4px 5px 7px rgba(0, 0, 0, 0.24);
+  color: #393908;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.input:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+.input:last-of-type {
+  margin-bottom: 25px;
+}

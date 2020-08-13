@@ -1,11 +1,12 @@
 import React, { lazy, Suspense, Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import routes from './routes';
-import AppBar from './components/AppBar';
 import { authOperations } from './redux/auth';
 import { connect } from 'react-redux';
+import routes from './routes';
+import AppBar from './components/AppBar';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import Container from './components/Container';
 
 const ContactsView = lazy(() =>
   import('./views/ContactsView' /* webpackChunkName: "ContactsView" */),
@@ -25,30 +26,33 @@ class App extends Component {
     return (
       <>
         <AppBar />
-        <Suspense fallback={<p>Загружаем...</p>}>
-          <Switch>
-            <Route exact path="/">
-              <Redirect to={routes.login} />
-            </Route>
-            <PrivateRoute
-              path={routes.contacts}
-              component={ContactsView}
-              redirectTo={routes.login}
-            />
-            <PublicRoute
-              path={routes.login}
-              restricted
-              redirectTo={routes.contacts}
-              component={LoginView}
-            />
-            <PublicRoute
-              path={routes.register}
-              restricted
-              redirectTo={routes.contacts}
-              component={RegisterView}
-            />
-          </Switch>
-        </Suspense>
+
+        <Container>
+          <Suspense fallback={<p>Загружаем...</p>}>
+            <Switch>
+              <Route exact path="/">
+                <Redirect to={routes.login} />
+              </Route>
+              <PrivateRoute
+                path={routes.contacts}
+                component={ContactsView}
+                redirectTo={routes.login}
+              />
+              <PublicRoute
+                path={routes.login}
+                restricted
+                redirectTo={routes.contacts}
+                component={LoginView}
+              />
+              <PublicRoute
+                path={routes.register}
+                restricted
+                redirectTo={routes.contacts}
+                component={RegisterView}
+              />
+            </Switch>
+          </Suspense>
+        </Container>
       </>
     );
   }

@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import styles from './LoginView.module.css';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import MaterialButton from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { styled } from '@material-ui/core/styles';
 
 class LoginView extends Component {
   state = {
@@ -34,36 +28,41 @@ class LoginView extends Component {
   render() {
     const { email, password } = this.state;
 
+    const MyButton = styled(MaterialButton)({
+      width: 'fit-content',
+      backgroundColor: 'palegoldenrod',
+      color: 'olive',
+    });
+
     return (
       <div>
-        <h1>Страница логина</h1>
+        <h1 className={styles.header}>Страница логина</h1>
 
         <form
           onSubmit={this.handleSubmit}
-          style={styles.form}
+          className={styles.form}
           autoComplete="off"
         >
-          <label style={styles.label}>
-            Почта
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </label>
+          <TextField
+            className={styles.input}
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+            label="Почта"
+          />
 
-          <label style={styles.label}>
-            Пароль
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-          </label>
+          <TextField
+            className={styles.input}
+            id="password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={this.handleChange}
+            label="Пароль"
+          />
 
-          <button type="submit">Войти</button>
+          <MyButton type="submit">Войти</MyButton>
         </form>
       </div>
     );

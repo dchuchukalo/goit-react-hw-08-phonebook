@@ -5,20 +5,22 @@ import UserMenu from '../UserMenu';
 import { connect } from 'react-redux';
 import { authSelectors } from '../../redux/auth';
 
-const styles = {
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottom: '1px solid #2A363B',
-  },
-};
+import MaterialAppBar from '@material-ui/core/AppBar';
+import MaterialToolbar from '@material-ui/core/Toolbar';
+import { styled } from '@material-ui/core/styles';
+
+const MyToolbar = styled(MaterialToolbar)({
+  justifyContent: 'space-between',
+  backgroundColor: 'olive',
+});
 
 const AppBar = ({ isAuthenticated }) => (
-  <header style={styles.header}>
-    <Navigation />
-    {isAuthenticated ? <UserMenu /> : <AuthNav />}
-  </header>
+  <MaterialAppBar>
+    <MyToolbar>
+      <Navigation />
+      {isAuthenticated ? <UserMenu /> : <AuthNav />}
+    </MyToolbar>
+  </MaterialAppBar>
 );
 
 const mapStateToProps = state => ({

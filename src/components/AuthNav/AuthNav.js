@@ -1,37 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import MyNavLink from '../MyNavLink';
+import styles from './AuthNav.module.css';
 
-const styles = {
-  link: {
-    display: 'inline-block',
-    textDecoration: 'none',
-    padding: 12,
-    fontWeight: 700,
-    color: '#2A363B',
-  },
-  activeLink: {
-    color: '#E84A5F',
-  },
-};
+import MaterialButton from '@material-ui/core/Button';
+import { styled } from '@material-ui/core/styles';
+
+const MyButton = styled(MaterialButton)({
+  padding: '0',
+});
 
 const AuthNav = () => (
-  <div>
-    <NavLink
-      to="/register"
-      exact
-      style={styles.link}
-      activeStyle={styles.activeLink}
-    >
-      Регистрация
-    </NavLink>
-    <NavLink
-      to="/login"
-      exact
-      style={styles.link}
-      activeStyle={styles.activeLink}
-    >
-      Логин
-    </NavLink>
+  <div className={styles.authNav}>
+    <MyButton>
+      <MyNavLink to="/register" exact>
+        Регистрация
+      </MyNavLink>
+    </MyButton>
+    <MyButton>
+      <MyNavLink to="/login" exact>
+        Логин
+      </MyNavLink>
+    </MyButton>
   </div>
 );
 

@@ -1,0 +1,13 @@
+.navLink {
+  font-weight: 700;
+  font-size: 18px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 4px 8px;
+}
+
+.activeNavLink {
+  color: palegoldenrod;
+  border: 1px solid palegoldenrod;
+  border-radius: 5px;
+}

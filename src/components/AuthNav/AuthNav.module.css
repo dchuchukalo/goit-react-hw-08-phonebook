@@ -1,0 +1,11 @@
+.authNav {
+  display: flex;
+  justify-content: space-between;
+  width: 240px;
+}
+
+@media screen and (max-width: 424px) {
+  .authNav {
+    margin: 0 auto;
+  }
+}

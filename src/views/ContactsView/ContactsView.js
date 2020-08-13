@@ -23,19 +23,21 @@ class ContactsView extends Component {
         <h1 className={styles.title}>Phonebook</h1>
         <ContactForm />
         <h2 className={styles.title}>Contacts</h2>
-        {items.length > 1 && <Filter />}
-        {items.length > 0 ? (
-          <ContactList />
-        ) : (
-          <p>The contact list is empty. Please add a new contact.</p>
-        )}
-        <ToastContainer
-          position="top-center"
-          autoClose={2000}
-          newestOnTop
-          limit={3}
-          transition={Zoom}
-        />
+        <section className={styles.contactsSection}>
+          {items.length > 1 && <Filter />}
+          {items.length > 0 ? (
+            <ContactList />
+          ) : (
+            <p>The contact list is empty. Please add a new contact.</p>
+          )}
+          <ToastContainer
+            position="top-center"
+            autoClose={2000}
+            newestOnTop
+            limit={3}
+            transition={Zoom}
+          />
+        </section>
       </>
     );
   }

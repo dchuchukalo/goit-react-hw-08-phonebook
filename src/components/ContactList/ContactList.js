@@ -2,9 +2,11 @@ import React from 'react';
 import ContactItem from './ContactItem';
 import PropTypes from 'prop-types';
 
+import List from '@material-ui/core/List';
+
 const ContactList = ({ contacts, deleteContact }) => {
   return (
-    <ul>
+    <List>
       {contacts &&
         contacts.map(({ id, name, number }) => (
           <ContactItem
@@ -14,7 +16,7 @@ const ContactList = ({ contacts, deleteContact }) => {
             onDelete={() => deleteContact(id)}
           />
         ))}
-    </ul>
+    </List>
   );
 };
 

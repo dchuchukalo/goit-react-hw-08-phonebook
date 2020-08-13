@@ -3,7 +3,10 @@
   margin-bottom: 20px;
 }
 
-.formInput {
-  margin-top: 10px;
+.input {
   display: block;
+  margin-bottom: 15px;
+  width: fit-content;
+  border-radius: 4px;
+  background-color: #fffef1;
 }

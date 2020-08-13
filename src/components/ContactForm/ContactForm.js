@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css';
 import { toast } from 'react-toastify';
 
+import MaterialButton from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { styled } from '@material-ui/core/styles';
+
 class ContactForm extends Component {
   state = {
     name: '',
@@ -57,35 +61,43 @@ class ContactForm extends Component {
 
   render() {
     const { name, number } = this.state;
+
+    const MyButton = styled(MaterialButton)({
+      width: 'fit-content',
+      backgroundColor: 'olive',
+      color: 'rgba(0, 0, 0, 0.87)',
+      boxShadow: '2px 2px 3px 0px rgba(0, 0, 0, 0.25)',
+    });
+
     return (
       <form className={styles.form} onSubmit={this.handleSubmit}>
-        <label className={styles.formTitle}>
-          Name
-          <input
-            className={styles.formInput}
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-            id={this.nameInputId}
-          />
-        </label>
+        <TextField
+          className={styles.input}
+          size="small"
+          label="Name"
+          variant="outlined"
+          type="text"
+          name="name"
+          value={name}
+          onChange={this.handleChange}
+          id={this.nameInputId}
+          autoComplete="off"
+        />
 
-        <label className={styles.formTitle}>
-          Number
-          <input
-            className={styles.formInput}
-            type="tel"
-            name="number"
-            value={number}
-            onChange={this.handleChange}
-            id={this.numberInputId}
-          />
-        </label>
+        <TextField
+          size="small"
+          label="Number"
+          variant="outlined"
+          className={styles.input}
+          type="tel"
+          name="number"
+          value={number}
+          onChange={this.handleChange}
+          id={this.numberInputId}
+          autoComplete="off"
+        />
 
-        <button className={styles.addToContact} type="submit">
-          Add contact
-        </button>
+        <MyButton type="submit">Add contact</MyButton>
       </form>
     );
   }

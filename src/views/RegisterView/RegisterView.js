@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import styles from './RegisterView.module.css';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import MaterialButton from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { styled } from '@material-ui/core/styles';
 
 class RegisterView extends Component {
   state = {
@@ -35,46 +29,50 @@ class RegisterView extends Component {
   render() {
     const { name, email, password } = this.state;
 
+    const MyButton = styled(MaterialButton)({
+      width: 'fit-content',
+      backgroundColor: 'palegoldenrod',
+      color: 'olive',
+    });
+
     return (
       <div>
-        <h1>Страница регистрации</h1>
+        <h1 className={styles.header}>Страница регистрации</h1>
 
         <form
           onSubmit={this.handleSubmit}
-          style={styles.form}
+          className={styles.form}
           autoComplete="off"
         >
-          <label style={styles.label}>
-            Имя
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={this.handleChange}
-            />
-          </label>
+          <TextField
+            className={styles.input}
+            type="text"
+            name="name"
+            value={name}
+            onChange={this.handleChange}
+            label="Имя"
+          />
 
-          <label style={styles.label}>
-            Почта
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-          </label>
+          <TextField
+            className={styles.input}
+            type="email"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+            label="Почта"
+          />
 
-          <label style={styles.label}>
-            Пароль
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-          </label>
+          <TextField
+            className={styles.input}
+            id="password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={this.handleChange}
+            label="Пароль"
+          />
 
-          <button type="submit">Зарегистрироваться</button>
+          <MyButton type="submit">Зарегистрироваться</MyButton>
         </form>
       </div>
     );

@@ -1,0 +1,16 @@
+.userMenu {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 424px) {
+  .name {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .name {
+    margin-right: 10px;
+  }
+}
