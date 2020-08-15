@@ -6,6 +6,7 @@ import styles from './RegisterView.module.css';
 import MaterialButton from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { styled } from '@material-ui/core/styles';
+import notification from '../../components/notification';
 
 class RegisterView extends Component {
   state = {
@@ -18,8 +19,19 @@ class RegisterView extends Component {
     this.setState({ [name]: value });
   };
 
+  isNotValid = ({ email, password, name }) => {
+    if (email === '' || password === '' || name === '') {
+      return true;
+    }
+  };
+
   handleSubmit = e => {
     e.preventDefault();
+
+    if (this.isNotValid(this.state)) {
+      notification('Please fill out all required fields');
+      return;
+    }
 
     this.props.onRegister(this.state);
 

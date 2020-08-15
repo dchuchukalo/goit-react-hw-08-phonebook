@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
+import notification from '../../components/notification';
 
 const {
   registerRequest,
@@ -36,6 +37,7 @@ const register = credentials => async dispatch => {
     token.set(data.token);
     dispatch(registerSuccess(data));
   } catch (error) {
+    notification('Wrong email or password');
     dispatch(registerError(error.message));
   }
 };
@@ -49,6 +51,7 @@ const login = credentials => async dispatch => {
     token.set(data.token);
     dispatch(loginSuccess(data));
   } catch (error) {
+    notification('Wrong email or password');
     dispatch(loginError(error.message));
   }
 };
