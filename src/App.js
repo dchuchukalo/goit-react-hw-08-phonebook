@@ -8,6 +8,7 @@ import AppBar from './components/AppBar';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import Container from './components/Container';
+import Spinner from './components/Spinner';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const ContactsView = lazy(() =>
@@ -30,7 +31,7 @@ class App extends Component {
       <>
         <AppBar />
         <Container>
-          <Suspense fallback={<p>Загружаем...</p>}>
+          <Suspense fallback={<Spinner />}>
             <Switch>
               <Route exact path="/">
                 <Redirect to={routes.login} />
@@ -62,13 +63,14 @@ class App extends Component {
             transition={Zoom}
           />
         </Container>
+        {this.props.isLoading && <Spinner />}
       </>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  error: authSelectors.getError(state),
+  isLoading: authSelectors.getIsLoading(state),
 });
 
 const mapDispatchToProps = {

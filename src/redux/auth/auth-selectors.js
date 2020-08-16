@@ -2,10 +2,10 @@ const getIsAuthenticated = state => state.auth.isAuthenticated;
 
 const getUserName = state => state.auth.user.name;
 
-const getError = state => state.auth.error;
+const getIsLoading = state => state.auth.isLoading;
 
 export default {
   getIsAuthenticated,
   getUserName,
-  getError,
+  getIsLoading,
 };
