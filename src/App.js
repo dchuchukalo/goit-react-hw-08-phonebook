@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, Component } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import { authOperations, authSelectors } from './redux/auth';
+import { authOperations } from './redux/auth';
+import { loadingSelectors } from './redux/loading';
 import { connect } from 'react-redux';
 import routes from './routes';
 import { ToastContainer, Zoom } from 'react-toastify';
@@ -70,7 +71,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  isLoading: authSelectors.getIsLoading(state),
+  isLoading: loadingSelectors.getIsLoading(state),
 });
 
 const mapDispatchToProps = {
